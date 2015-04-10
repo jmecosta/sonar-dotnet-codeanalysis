@@ -18,8 +18,6 @@ namespace SonarQube.Rules.Test
             var solution = CompilationHelper.GetSolutionFromText("");
 
             var compilation = solution.Projects.First().GetCompilationAsync().Result;
-            var syntaxTree = compilation.SyntaxTrees.First();
-
 
             var diagnosticsResult = runner.GetDiagnostics(compilation);
 

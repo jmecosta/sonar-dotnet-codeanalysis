@@ -1,5 +1,4 @@
 ﻿using System.Collections.Immutable;
-using Microsoft.CodeAnalysis;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SonarQube.Analyzers.Rules;
 

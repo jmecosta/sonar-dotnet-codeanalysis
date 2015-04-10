@@ -5,7 +5,6 @@ using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Diagnostics;
-using Microsoft.CodeAnalysis.Text;
 using SonarQube.Analyzers.Helpers;
 using SonarQube.Analyzers.SonarQube.Settings;
 using SonarQube.Analyzers.SonarQube.Settings.Sqale;

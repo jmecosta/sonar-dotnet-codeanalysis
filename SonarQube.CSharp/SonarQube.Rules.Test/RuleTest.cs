@@ -6,17 +6,16 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SonarQube.Analyzers.Rules;
 using SonarQube.Analyzers.SonarQube.Settings;
 using SonarQube.RuleDescriptor;
 
 namespace SonarQube.Rules.Test
 {
-	[TestClass]
+    [TestClass]
     public class RuleTest
     {
-	    private static IList<Assembly> GetRuleAssemblies()
-	    {
+        private static IList<Assembly> GetRuleAssemblies()
+        {
             return new[]
             {
                 Assembly.LoadFrom("SonarQube.Analyzers.dll"),
@@ -39,12 +38,12 @@ namespace SonarQube.Rules.Test
             var analyzers = GetDiagnosticAnalyzerTypes(assemblies);
 
             var resources = new Dictionary<Assembly, string[]>();
-		    foreach (var assembly in assemblies)
-		    {
-		        resources[assembly] = assembly.GetManifestResourceNames();
-		    }
-            
-		    var missingDescriptors = new List<string>();
+            foreach (var assembly in assemblies)
+            {
+                resources[assembly] = assembly.GetManifestResourceNames();
+            }
+
+            var missingDescriptors = new List<string>();
             foreach (var analyzer in analyzers)
             {
                 var ruleDescriptor = analyzer.GetCustomAttributes<RuleAttribute>().First();
@@ -66,16 +65,16 @@ namespace SonarQube.Rules.Test
                 }
             }
 
-		    if (missingDescriptors.Any())
-		    {
-                throw new Exception(string.Format("Missing HTML description for rule {0}", string.Join(",", missingDescriptors) ));
+            if (missingDescriptors.Any())
+            {
+                throw new Exception(string.Format("Missing HTML description for rule {0}", string.Join(",", missingDescriptors)));
             }
         }
 
         [TestMethod]
         public void DiagnosticAnalyzerHasRuleAttribute()
         {
-			var analyzers = GetDiagnosticAnalyzerTypes(GetRuleAssemblies());
+            var analyzers = GetDiagnosticAnalyzerTypes(GetRuleAssemblies());
 
             foreach (var analyzer in analyzers)
             {

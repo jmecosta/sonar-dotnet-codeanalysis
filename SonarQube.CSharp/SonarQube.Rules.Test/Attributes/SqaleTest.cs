@@ -5,9 +5,8 @@ using FluentAssertions;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SonarQube.Analyzers.Helpers;
-using SonarQube.Analyzers.Rules;
-using SonarQube.Analyzers.SonarQube.Settings.Sqale;
 using SonarQube.Analyzers.SonarQube.Settings;
+using SonarQube.Analyzers.SonarQube.Settings.Sqale;
 
 namespace SonarQube.Rules.Test.Attributes
 {
