@@ -1,1 +1,0 @@
-msbuild /p:DefineConstants=CodeSigned /p:SignAssembly=true /p:AssemblyOriginatorKeyFile="[Path to SNK]" /p:Configuration=Release /t:Rebuild
