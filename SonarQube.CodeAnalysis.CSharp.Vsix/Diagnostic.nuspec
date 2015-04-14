@@ -6,7 +6,7 @@
     <title>SonarQube Code Analysis for C# Pre-release</title>
     <authors>SonarSource</authors>
     <owners>SonarSource</owners>
-    <licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>
+    <licenseUrl>https://raw.githubusercontent.com/SonarSource/sonar-dotnet-codeanalysis/master/LICENSE</licenseUrl>
     <projectUrl>http://redirect.sonarsource.com/plugins/csharp.html</projectUrl>
     <iconUrl>http://www.sonarsource.com/wp-content/uploads/2012/03/sonarsource_icon_BG_white.jpg</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
