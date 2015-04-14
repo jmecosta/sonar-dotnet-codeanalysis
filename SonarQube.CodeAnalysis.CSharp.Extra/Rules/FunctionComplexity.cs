@@ -17,8 +17,8 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
     public class FunctionComplexity : DiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S1541";
-        internal const string Description = "Method complexity should not be too high";
-        internal const string MessageFormat = "Refactor this method that has a complexity of {1} (which is greater than {0} authorized).";
+        internal const string Description = "Methods should not be too complex";
+        internal const string MessageFormat = "The Cyclomatic Complexity of this method is {1} which is greater than {0} authorized).";
         internal const string Category = "SonarQube";
         internal const Severity RuleSeverity = Severity.Major; 
         internal const bool IsActivatedByDefault = true;

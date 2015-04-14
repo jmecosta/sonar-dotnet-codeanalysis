@@ -15,11 +15,12 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
     [SqaleConstantRemediation("5min")]
     [Rule(DiagnosticId, RuleSeverity, Description, IsActivatedByDefault)]
     [LegacyKey("ClassName")]
+    [Tags("convention")]
     public class ClassName : DiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S101";
         internal const string Description = "Class name should comply with a naming convention";
-        internal const string MessageFormat = "Rename this class to match the regular expression: {0}";
+        internal const string MessageFormat = "Rename this class \"{1}\" to match the regular expression: {0}";
         internal const string Category = "SonarQube";
         internal const Severity RuleSeverity = Severity.Minor;
         internal const bool IsActivatedByDefault = true;
@@ -43,7 +44,7 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
 
                     if (!Regex.IsMatch(identifier.Text, Convention))
                     {
-                        c.ReportDiagnostic(Diagnostic.Create(Rule, identifier.GetLocation(), Convention));
+                        c.ReportDiagnostic(Diagnostic.Create(Rule, identifier.GetLocation(), Convention, identifier.Text));
                     }
                 },
                 SyntaxKind.ClassDeclaration);

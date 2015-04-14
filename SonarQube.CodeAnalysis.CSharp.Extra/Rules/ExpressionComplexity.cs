@@ -14,6 +14,7 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
     [SqaleConstantRemediation("30min")]
     [SqaleSubCharacteristic(SqaleSubCharacteristic.UnitTestability)]
     [Rule(DiagnosticId, RuleSeverity, Description, IsActivatedByDefault)]
+    [Tags("brain-overload")]
     public class ExpressionComplexity : DiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S1067";

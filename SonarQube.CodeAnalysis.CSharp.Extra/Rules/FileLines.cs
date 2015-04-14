@@ -9,7 +9,7 @@ using SonarQube.CodeAnalysis.CSharp.SonarQube.Settings.Sqale;
 namespace SonarQube.CodeAnalysis.CSharp.Rules
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    [SqaleConstantRemediation("20min")]
+    [SqaleConstantRemediation("1h")]
     [Rule(DiagnosticId, RuleSeverity, Description, IsActivatedByDefault)]
     [SqaleSubCharacteristic(SqaleSubCharacteristic.Readability)]
     [LegacyKey("FileLoc")]

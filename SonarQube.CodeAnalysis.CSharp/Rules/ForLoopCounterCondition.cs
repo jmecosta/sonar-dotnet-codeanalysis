@@ -16,6 +16,7 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
     [SqaleSubCharacteristic(SqaleSubCharacteristic.LogicReliability)]
     [SqaleConstantRemediation("20min")]
     [Rule(DiagnosticId, RuleSeverity, Description, IsActivatedByDefault)]
+    [Tags("bug")]
     public class ForLoopCounterCondition : DiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S1994";

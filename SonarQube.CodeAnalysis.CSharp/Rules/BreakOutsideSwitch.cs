@@ -19,11 +19,11 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
     public class BreakOutsideSwitch : DiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S1227";
-        internal const string Description = "'break' should not be used outside of 'switch'";
+        internal const string Description = "break statements should not be used except for switch cases";
         internal const string MessageFormat = "Refactor the code in order to remove this break statement.";
         internal const string Category = "SonarQube";
         internal const Severity RuleSeverity = Severity.Major;
-        internal const bool IsActivatedByDefault = true;
+        internal const bool IsActivatedByDefault = false;
 
         internal static DiagnosticDescriptor Rule =
             new DiagnosticDescriptor(DiagnosticId, Description, MessageFormat, Category,

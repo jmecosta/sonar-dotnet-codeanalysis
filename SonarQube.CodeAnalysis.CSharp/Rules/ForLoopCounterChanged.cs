@@ -16,11 +16,12 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
     [SqaleSubCharacteristic(SqaleSubCharacteristic.LogicReliability)]
     [SqaleConstantRemediation("10min")]
     [Rule(DiagnosticId, RuleSeverity, Description, IsActivatedByDefault)]
+    [Tags("misra", "pitfall")]
     public class ForLoopCounterChanged : DiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S127";
-        internal const string Description = "A loop's counter should not be assigned within the loop body";
-        internal const string MessageFormat = "Refactor the code to avoid updating the loop counter \"{0}\" within the loop body.";
+        internal const string Description = "\"for\" loop stop conditions should be invariant";
+        internal const string MessageFormat = "Do not update the loop counter \"{0}\" within the loop body.";
         internal const string Category = "SonarQube";
         internal const Severity RuleSeverity = Severity.Major; 
         internal const bool IsActivatedByDefault = true;

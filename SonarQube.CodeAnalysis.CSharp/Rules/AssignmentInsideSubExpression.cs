@@ -20,8 +20,8 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
     public class AssignmentInsideSubExpression : DiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S1121";
-        internal const string Description = "Assignment should not be used inside sub-expressions";
-        internal const string MessageFormat = "Extract this assignment outside of the sub-expression.";
+        internal const string Description = "Assignments should not be made from within sub-expressions";
+        internal const string MessageFormat = "Extract the assignment of \"{0}\" from this expression.";
         internal const string Category = "SonarQube";
         internal const Severity RuleSeverity = Severity.Major;
         internal const bool IsActivatedByDefault = true;
@@ -40,7 +40,7 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
                 {
                     if (IsInSubExpression(c.Node))
                     {
-                        c.ReportDiagnostic(Diagnostic.Create(Rule, c.Node.GetLocation()));
+                        c.ReportDiagnostic(Diagnostic.Create(Rule, c.Node.GetLocation(), c.Node.ChildNodes().First().ToString()));
                     }
                 },
                 SyntaxKind.SimpleAssignmentExpression,

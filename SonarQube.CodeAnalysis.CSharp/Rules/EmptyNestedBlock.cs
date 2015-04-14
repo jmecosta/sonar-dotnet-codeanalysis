@@ -15,6 +15,7 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
     [SqaleSubCharacteristic(SqaleSubCharacteristic.LogicReliability)]
     [SqaleConstantRemediation("5min")]
     [Rule(DiagnosticId, RuleSeverity, Description, IsActivatedByDefault)]
+    [Tags("bug")]
     public class EmptyNestedBlock : DiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S108";

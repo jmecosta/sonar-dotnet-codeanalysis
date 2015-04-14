@@ -13,6 +13,7 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
     [SqaleSubCharacteristic(SqaleSubCharacteristic.LogicReliability)]
     [SqaleConstantRemediation("5min")]
     [Rule(DiagnosticId, RuleSeverity, Description, IsActivatedByDefault)]
+    [Tags("cert", "misra")]
     public class ElseIfWithoutElse : DiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S126";

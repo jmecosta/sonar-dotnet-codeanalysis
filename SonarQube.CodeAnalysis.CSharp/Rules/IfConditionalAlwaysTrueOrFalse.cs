@@ -13,10 +13,11 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
     [SqaleSubCharacteristic(SqaleSubCharacteristic.Readability)]
     [SqaleConstantRemediation("2min")]
     [Rule(DiagnosticId, RuleSeverity, Description, IsActivatedByDefault)]
+    [Tags("bug", "cwe", "misra", "security")]
     public class IfConditionalAlwaysTrueOrFalse : DiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S1145";
-        internal const string Description = "\"if\" statement conditions should not unconditionally evaluate to \"true\" or to \"false\"";
+        internal const string Description = "Useless \"if(true) {...}\" and \"if(false){...}\" blocks should be removed";
         internal const string MessageFormat = "Remove this \"if\" statement.";
         internal const string Category = "SonarQube";
         internal const Severity RuleSeverity = Severity.Major; 

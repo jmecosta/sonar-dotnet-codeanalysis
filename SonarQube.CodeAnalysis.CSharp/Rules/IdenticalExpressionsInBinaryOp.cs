@@ -13,6 +13,7 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
     [SqaleSubCharacteristic(SqaleSubCharacteristic.LogicReliability)]
     [SqaleConstantRemediation("2min")]
     [Rule(DiagnosticId, RuleSeverity, Description, IsActivatedByDefault)]
+    [Tags("bug", "cert")]
     public class IdenticalExpressionsInBinaryOp : DiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S1764";

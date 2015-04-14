@@ -1,4 +1,5 @@
 ﻿using System.Collections.Immutable;
+using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -18,8 +19,8 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
     public class ParameterAssignedTo : DiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S1226";
-        internal const string Description = "Parameter variable should not be assigned to";
-        internal const string MessageFormat = "Remove this assignment to the method parameter '{0}'.";
+        internal const string Description = "Method parameters and caught exceptions should not be reassigned";
+        internal const string MessageFormat = "Introduce a new variable instead of reusing the parameter \"{0}\".";
         internal const string Category = "SonarQube";
         internal const Severity RuleSeverity = Severity.Major; 
         internal const bool IsActivatedByDefault = true;
@@ -39,7 +40,7 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
                     var assignmentNode = (AssignmentExpressionSyntax)c.Node;
                     var symbol = c.SemanticModel.GetSymbolInfo(assignmentNode.Left).Symbol;
 
-                    if (symbol != null && AssignsToParameter(symbol))
+                    if (symbol != null && (AssignsToParameter(symbol) || AssignsToCatchVariable(symbol)))
                     {
                         c.ReportDiagnostic(Diagnostic.Create(Rule, assignmentNode.GetLocation(), assignmentNode.Left.ToString()));
                     }
@@ -60,13 +61,28 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
         private static bool AssignsToParameter(ISymbol symbol)
         {
             var parameterSymbol = symbol as IParameterSymbol;
-
+            
             if (parameterSymbol == null)
             {
                 return false;
             }
             
             return parameterSymbol.RefKind == RefKind.None;
+        }
+        private static bool AssignsToCatchVariable(ISymbol symbol)
+        {
+            var localSymbol = symbol as ILocalSymbol;
+
+            if (localSymbol == null)
+            {
+                return false;
+            }
+
+            return localSymbol.DeclaringSyntaxReferences
+                .Select(declaringSyntaxReference => declaringSyntaxReference.GetSyntax())
+                .Any(syntaxNode =>
+                    syntaxNode.Parent is CatchClauseSyntax &&
+                    ((CatchClauseSyntax) syntaxNode.Parent).Declaration == syntaxNode);
         }
     }
 }

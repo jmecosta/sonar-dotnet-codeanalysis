@@ -7,6 +7,18 @@ namespace Tests.Diagnostics
         static void f7(this int a)
         {
             a = 42; // Noncompliant
+
+            try
+            {
+
+            }
+            catch (Exception exc)
+            {
+                exc = new Exception(); // Noncompliant
+                var v = 5;
+                v = 6;
+                throw exc;
+            }
         }
     }
 

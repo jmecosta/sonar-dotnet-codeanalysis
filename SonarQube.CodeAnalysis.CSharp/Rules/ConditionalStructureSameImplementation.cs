@@ -19,7 +19,7 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
     {
         internal const string DiagnosticId = "S1871";
         internal const string Description = @"Two branches in the same conditional structure should not have exactly the same implementation";
-        internal const string MessageFormat = @"Either merge this {1} with the identical one on line {0} or change one of the implementations.";
+        internal const string MessageFormat = @"Either merge this {1} with the identical one on line ""{0}"" or change one of the implementations.";
         internal const string Category = "SonarQube";
         internal const Severity RuleSeverity = Severity.Major; 
         internal const bool IsActivatedByDefault = true;

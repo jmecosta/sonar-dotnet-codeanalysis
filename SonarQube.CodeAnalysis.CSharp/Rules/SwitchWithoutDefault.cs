@@ -19,8 +19,8 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
     public class SwitchWithoutDefault : DiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S131";
-        internal const string Description = "'switch' statement should have a 'default:' case";
-        internal const string MessageFormat = "Add a default: case to this switch.";
+        internal const string Description = "\"switch\" statements should end with a \"[default\" clause";
+        internal const string MessageFormat = "Add a \"default\" clause to this switch statement.";
         internal const string Category = "SonarQube";
         internal const Severity RuleSeverity = Severity.Major; 
         internal const bool IsActivatedByDefault = true;

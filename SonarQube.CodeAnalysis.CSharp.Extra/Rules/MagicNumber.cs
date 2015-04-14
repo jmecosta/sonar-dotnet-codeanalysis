@@ -20,10 +20,10 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
     {
         internal const string DiagnosticId = "S109";
         internal const string Description = "Magic number should not be used";
-        internal const string MessageFormat = "Extract this magic number into a constant, variable declaration or an enum.";
+        internal const string MessageFormat = "Assign this magic number {0} to a well-named constant, and use the constant instead.";
         internal const string Category = "SonarQube";
         internal const Severity RuleSeverity = Severity.Minor; 
-        internal const bool IsActivatedByDefault = true;
+        internal const bool IsActivatedByDefault = false;
 
         internal static DiagnosticDescriptor Rule =
             new DiagnosticDescriptor(DiagnosticId, Description, MessageFormat, Category,
@@ -49,7 +49,7 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
                           e.IsKind(SyntaxKind.Attribute)) &&
                         !Exceptions.Contains(literalNode.Token.Text))
                     {
-                        c.ReportDiagnostic(Diagnostic.Create(Rule, literalNode.GetLocation()));
+                        c.ReportDiagnostic(Diagnostic.Create(Rule, literalNode.GetLocation(), literalNode.Token.Text));
                     }
                 },
                 SyntaxKind.NumericLiteralExpression);

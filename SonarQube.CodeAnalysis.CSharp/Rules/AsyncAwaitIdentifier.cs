@@ -20,8 +20,8 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
     public class AsyncAwaitIdentifier : DiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S2306";
-        internal const string Description = "'async' and 'await' should not be used as identifier";
-        internal const string MessageFormat = "Rename this identifier.";
+        internal const string Description = "\"async\" and \"await\" should not be used as identifiers";
+        internal const string MessageFormat = "Rename \"{0}\".";
         internal const string Category = "SonarQube";
         internal const Severity RuleSeverity = Severity.Major;
         internal const bool IsActivatedByDefault = true;
@@ -42,7 +42,7 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
                     foreach (var asyncOrAwaitToken in GetAsyncOrAwaitTokens(c.Tree.GetRoot())
                         .Where(token => !token.Parent.AncestorsAndSelf().OfType<IdentifierNameSyntax>().Any()))
                     {
-                        c.ReportDiagnostic(Diagnostic.Create(Rule, asyncOrAwaitToken.GetLocation()));
+                        c.ReportDiagnostic(Diagnostic.Create(Rule, asyncOrAwaitToken.GetLocation(), asyncOrAwaitToken.ToString()));
                     }
                 });
         }

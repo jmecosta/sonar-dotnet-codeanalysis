@@ -20,10 +20,10 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
     public class CommentedOutCode : DiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S125";
-        internal const string Description = "Comment should not include code";
-        internal const string MessageFormat = "Remove this commented out code or move it into XML documentation.";
+        internal const string Description = "Sections of code should not be \"commented out\"";
+        internal const string MessageFormat = "Remove this commented out code.";
         internal const string Category = "SonarQube";
-        internal const Severity RuleSeverity = Severity.Minor;
+        internal const Severity RuleSeverity = Severity.Major;
         internal const bool IsActivatedByDefault = true;
 
         internal static DiagnosticDescriptor Rule =

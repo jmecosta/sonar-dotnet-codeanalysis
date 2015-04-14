@@ -13,10 +13,11 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
     [SqaleSubCharacteristic(SqaleSubCharacteristic.Understandability)]
     [SqaleConstantRemediation("5min")]
     [Rule(DiagnosticId, RuleSeverity, Description, IsActivatedByDefault)]
+    [Tags("clumsy", "unused")]
     public class CatchRethrow : DiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S2737";
-        internal const string Description = @"""catch"" clauses should do more than rethrow";
+        internal const string Description = "\"catch\" clauses should do more than rethrow";
         internal const string MessageFormat = @"Add logic to this catch clause or eliminate it and rethrow the exception automatically.";
         internal const string Category = "SonarQube";
         internal const Severity RuleSeverity = Severity.Major;

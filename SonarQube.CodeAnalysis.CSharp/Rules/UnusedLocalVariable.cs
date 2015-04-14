@@ -16,6 +16,7 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
     [SqaleConstantRemediation("5min")]
     [Rule(DiagnosticId, RuleSeverity, Description, IsActivatedByDefault)]
     [Tags("unused")]
+    [LegacyKey("UnusedVariable")]
     public class UnusedLocalVariable : DiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S1481";

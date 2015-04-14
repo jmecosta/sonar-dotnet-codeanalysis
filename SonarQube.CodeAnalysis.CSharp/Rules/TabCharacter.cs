@@ -21,7 +21,7 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
         internal const string MessageFormat = "Replace all tab characters in this file by sequences of white-spaces.";
         internal const string Category = "SonarQube";
         internal const Severity RuleSeverity = Severity.Minor; 
-        internal const bool IsActivatedByDefault = true;
+        internal const bool IsActivatedByDefault = false;
 
         internal static DiagnosticDescriptor Rule =
             new DiagnosticDescriptor(DiagnosticId, Description, MessageFormat, Category,
