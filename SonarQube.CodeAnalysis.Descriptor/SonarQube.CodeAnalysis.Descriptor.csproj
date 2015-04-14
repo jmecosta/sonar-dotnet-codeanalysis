@@ -72,7 +72,18 @@
       <Name>SonarQube.CodeAnalysis.CSharp</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Descriptor.nuspec">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>"$(TargetPath)" RuleDescriptors.xml QualityProfile.xml SqaleDescriptors.xml
+"$(SolutionDir)packages\NuGet.CommandLine.2.8.3\tools\NuGet.exe" pack Descriptor.nuspec -NoPackageAnalysis -OutputDirectory .
+</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
