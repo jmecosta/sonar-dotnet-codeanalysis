@@ -57,18 +57,15 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
             context.RegisterSyntaxNodeAction(
                 c =>
                 {
-                    using (var eqChecker = new EquivalenceChecker(c.SemanticModel))
-                    {
-                        var switchSection = (SwitchSectionSyntax) c.Node;
-                        var precedingSection = switchSection
-                            .GetPrecedingSections()
-                            .FirstOrDefault(
-                                preceding => eqChecker.AreEquivalent(switchSection.Statements, preceding.Statements));
+                    var switchSection = (SwitchSectionSyntax) c.Node;
+                    var precedingSection = switchSection
+                        .GetPrecedingSections()
+                        .FirstOrDefault(
+                            preceding => EquivalenceChecker.AreEquivalent(switchSection.Statements, preceding.Statements));
 
-                        if (precedingSection != null)
-                        {
-                            ReportSection(c, switchSection, precedingSection);
-                        }
+                    if (precedingSection != null)
+                    {
+                        ReportSection(c, switchSection, precedingSection);
                     }
                 },
                 SyntaxKind.SwitchSection);
@@ -77,17 +74,13 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
         private static void CheckStatement(SyntaxNodeAnalysisContext c, StatementSyntax statementToCheck, 
             IEnumerable<StatementSyntax> precedingStatements)
         {
-            
-                using (var eqChecker = new EquivalenceChecker(c.SemanticModel))
-                {
-                    var precedingStatement = precedingStatements
-                        .FirstOrDefault(preceding => eqChecker.AreEquivalent(statementToCheck, preceding));
+            var precedingStatement = precedingStatements
+                .FirstOrDefault(preceding => EquivalenceChecker.AreEquivalent(statementToCheck, preceding));
 
-                    if (precedingStatement != null)
-                    {
-                        ReportStatement(c, statementToCheck, precedingStatement);
-                    }
-                }
+            if (precedingStatement != null)
+            {
+                ReportStatement(c, statementToCheck, precedingStatement);
+            }
         }
 
         private static void ReportSection(SyntaxNodeAnalysisContext c, SwitchSectionSyntax switchSection, SwitchSectionSyntax precedingSection)

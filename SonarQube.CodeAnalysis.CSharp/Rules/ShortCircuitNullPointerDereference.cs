@@ -103,31 +103,27 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
             List<ExpressionSyntax> expressionsInChain,
             ExpressionSyntax expressionComparedToNull, BinaryExpressionSyntax comparisonToNull)
         {
-            
-                using (var eqChecker = new EquivalenceChecker(c.SemanticModel))
-                {
-                    for (var j = currentExpressionIndex + 1; j < expressionsInChain.Count; j++)
-                    {
-                        var descendantNodes = expressionsInChain[j].DescendantNodes()
-                            .Where(descendant =>
-                                descendant.IsKind(expressionComparedToNull.Kind()) &&
-                                eqChecker.AreEquivalent(expressionComparedToNull, descendant))
-                                .Where(descendant =>
-                            (descendant.Parent is MemberAccessExpressionSyntax &&
-                             eqChecker.AreEquivalent(expressionComparedToNull,
-                                 ((MemberAccessExpressionSyntax) descendant.Parent).Expression)) ||
-                            (descendant.Parent is ElementAccessExpressionSyntax &&
-                             eqChecker.AreEquivalent(expressionComparedToNull,
-                                 ((ElementAccessExpressionSyntax) descendant.Parent).Expression)))
-                            .ToList();
+            for (var j = currentExpressionIndex + 1; j < expressionsInChain.Count; j++)
+            {
+                var descendantNodes = expressionsInChain[j].DescendantNodes()
+                    .Where(descendant =>
+                        descendant.IsKind(expressionComparedToNull.Kind()) &&
+                        EquivalenceChecker.AreEquivalent(expressionComparedToNull, descendant))
+                        .Where(descendant =>
+                    (descendant.Parent is MemberAccessExpressionSyntax &&
+                        EquivalenceChecker.AreEquivalent(expressionComparedToNull,
+                            ((MemberAccessExpressionSyntax) descendant.Parent).Expression)) ||
+                    (descendant.Parent is ElementAccessExpressionSyntax &&
+                        EquivalenceChecker.AreEquivalent(expressionComparedToNull,
+                            ((ElementAccessExpressionSyntax) descendant.Parent).Expression)))
+                    .ToList();
 
-                        if (descendantNodes.Any())
-                        {
-                            c.ReportDiagnostic(Diagnostic.Create(Rule, comparisonToNull.GetLocation(),
-                                expressionComparedToNull.ToString()));
-                        }
-                    }
+                if (descendantNodes.Any())
+                {
+                    c.ReportDiagnostic(Diagnostic.Create(Rule, comparisonToNull.GetLocation(),
+                        expressionComparedToNull.ToString()));
                 }
+            }
         }
 
         private static IEnumerable<ExpressionSyntax> GetExpressionsInChain(BinaryExpressionSyntax binaryExpression)

@@ -38,20 +38,17 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
                     var ifStatement = (IfStatementSyntax)c.Node;
                     var currentCondition = ifStatement.Condition;
                     
-                    using (var eqChecker = new EquivalenceChecker(c.SemanticModel))
-                    {
-                        var precedingCondition = ifStatement
-                            .GetPrecedingConditionsInConditionChain()
-                            .FirstOrDefault(
-                                preceding => eqChecker.AreEquivalent(currentCondition, preceding));
+                    var precedingCondition = ifStatement
+                        .GetPrecedingConditionsInConditionChain()
+                        .FirstOrDefault(
+                            preceding => EquivalenceChecker.AreEquivalent(currentCondition, preceding));
 
-                        if (precedingCondition != null)
-                        {
-                            c.ReportDiagnostic(Diagnostic.Create(
-                                Rule,
-                                currentCondition.GetLocation(),
-                                precedingCondition.GetLocation().GetLineSpan().StartLinePosition.Line + 1));
-                        }
+                    if (precedingCondition != null)
+                    {
+                        c.ReportDiagnostic(Diagnostic.Create(
+                            Rule,
+                            currentCondition.GetLocation(),
+                            precedingCondition.GetLocation().GetLineSpan().StartLinePosition.Line + 1));
                     }
                 },
                 SyntaxKind.IfStatement);

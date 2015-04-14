@@ -44,13 +44,10 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
                     {
                         return;
                     }
-
-                    using (var eqChecker = new EquivalenceChecker(c.SemanticModel))
+                    
+                    if (EquivalenceChecker.AreEquivalent(expression.Left, expression.Right))
                     {
-                        if (eqChecker.AreEquivalent(expression.Left, expression.Right))
-                        {
-                            c.ReportDiagnostic(Diagnostic.Create(Rule, c.Node.GetLocation()));
-                        }
+                        c.ReportDiagnostic(Diagnostic.Create(Rule, c.Node.GetLocation()));
                     }
                 },
                 SyntaxKind.SimpleAssignmentExpression

@@ -43,7 +43,6 @@ namespace Test
         private SyntaxTree syntaxTree;
         private SemanticModel semanticModel;
         private List<MethodDeclarationSyntax> methods;
-        private EquivalenceChecker eqChecker;
 
         [TestInitialize]
         public void TestSetup()
@@ -53,29 +52,19 @@ namespace Test
             compilation = solution.Projects.First().GetCompilationAsync().Result;
             syntaxTree = compilation.SyntaxTrees.First();
             semanticModel = compilation.GetSemanticModel(syntaxTree);
-            eqChecker = new EquivalenceChecker(semanticModel);
 
             methods = syntaxTree.GetRoot().DescendantNodes().OfType<MethodDeclarationSyntax>().ToList();
         }
-
-        [TestCleanup]
-        public void TestCleanup()
-        {
-            if (eqChecker != null)
-            {
-                eqChecker.Dispose();
-            }
-        }
-
+        
         [TestMethod]
         public void AreEquivalent_Node()
         {
-            var result = eqChecker.AreEquivalent(
+            var result = EquivalenceChecker.AreEquivalent(
                 methods.First(m => m.Identifier.ValueText == "Method1").Body,
                 methods.First(m => m.Identifier.ValueText == "Method2").Body);
             result.Should().BeTrue();
 
-            result = eqChecker.AreEquivalent(
+            result = EquivalenceChecker.AreEquivalent(
                 methods.First(m => m.Identifier.ValueText == "Method1").Body,
                 methods.First(m => m.Identifier.ValueText == "Method3").Body);
             result.Should().BeFalse();
@@ -84,12 +73,12 @@ namespace Test
         [TestMethod]
         public void AreEquivalent_List()
         {
-            var result = eqChecker.AreEquivalent(
+            var result = EquivalenceChecker.AreEquivalent(
                 methods.First(m => m.Identifier.ValueText == "Method1").Body.Statements,
                 methods.First(m => m.Identifier.ValueText == "Method2").Body.Statements);
             result.Should().BeTrue();
 
-            result = eqChecker.AreEquivalent(
+            result = EquivalenceChecker.AreEquivalent(
                 methods.First(m => m.Identifier.ValueText == "Method1").Body.Statements,
                 methods.First(m => m.Identifier.ValueText == "Method3").Body.Statements);
             result.Should().BeFalse();
