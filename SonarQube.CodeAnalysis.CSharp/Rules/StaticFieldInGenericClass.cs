@@ -52,19 +52,22 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
                         .Where(f => f.Modifiers.Any(m => m.IsKind(SyntaxKind.StaticKeyword)))
                         .ToList();
 
-                    fields.ForEach(field => CheckMember(field, field.Declaration.Type, typeParameterNames, c));
+                    fields.ForEach(field =>
+                        field.Declaration.Variables.ToList().ForEach(variable =>
+                            CheckMember(variable.Identifier, field.Declaration.Type, typeParameterNames, c)));
+                    
 
                     var properties = classDeclaration.Members
                         .OfType<PropertyDeclarationSyntax>()
                         .Where(p => p.Modifiers.Any(m => m.IsKind(SyntaxKind.StaticKeyword)))
                         .ToList();
 
-                    properties.ForEach(property => CheckMember(property, property.Type, typeParameterNames, c));
+                    properties.ForEach(property => CheckMember(property.Identifier, property.Type, typeParameterNames, c));
                 },
                 SyntaxKind.ClassDeclaration);
         }
 
-        private static void CheckMember(SyntaxNode node, TypeSyntax type, IEnumerable<string> typeParameterNames, 
+        private static void CheckMember(SyntaxToken identifier, TypeSyntax type, IEnumerable<string> typeParameterNames, 
             SyntaxNodeAnalysisContext c)
         {
             var genericTypeName = type as GenericNameSyntax;
@@ -77,7 +80,7 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
                 return;
             }
 
-            c.ReportDiagnostic(Diagnostic.Create(Rule, node.GetLocation()));
+            c.ReportDiagnostic(Diagnostic.Create(Rule, identifier.GetLocation()));
         }
 
         private static IEnumerable<string> GetTypeArguments(GenericNameSyntax genericTypeName)
