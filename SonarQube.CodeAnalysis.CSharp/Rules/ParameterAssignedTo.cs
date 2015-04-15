@@ -41,7 +41,7 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
 
                     if (symbol != null && (AssignsToParameter(symbol) || AssignsToCatchVariable(symbol)))
                     {
-                        c.ReportDiagnostic(Diagnostic.Create(Rule, assignmentNode.GetLocation(), assignmentNode.Left.ToString()));
+                        c.ReportDiagnostic(Diagnostic.Create(Rule, assignmentNode.Left.GetLocation(), assignmentNode.Left.ToString()));
                     }
                 },
                 SyntaxKind.SimpleAssignmentExpression,
