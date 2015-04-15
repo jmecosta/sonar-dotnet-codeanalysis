@@ -100,19 +100,13 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
             var checkedLine = line.Replace(" ", "").Replace("\t", "");
 
             return
-                CodeEndings.Any(ending => checkedLine.EndsWith(ending, StringComparison.Ordinal)) ||
-                CodeParts.Any(part => checkedLine.Contains(part)) ||
-                (checkedLine.Length - checkedLine.Replace("&&", "").Replace("||", "").Length)/2 >= 3;
+                (CodeEndings.Any(ending => checkedLine.EndsWith(ending, StringComparison.Ordinal)) ||
+                 CodeParts.Any(part => checkedLine.Contains(part)) ||
+                 (checkedLine.Length - checkedLine.Replace("&&", "").Replace("||", "").Length)/2 >= 3) &&
+                !checkedLine.Contains("License");
         }
 
-        private static IEnumerable<string> CodeEndings
-        {
-            get { return new[] {";", "{", "}"}; }
-        }
-
-        private static IEnumerable<string> CodeParts
-        {
-            get { return new[] { "++", "for(", "if(", "while(", "catch(", "switch(", "try(", "else(" }; }
-        }
+        private static readonly string[] CodeEndings = { ";", "{", "}" };
+        private static readonly string[] CodeParts = { "++", "for(", "if(", "while(", "catch(", "switch(", "try{", "else{" };
     }
 }
