@@ -16,11 +16,23 @@ namespace SonarQube.CodeAnalysis.Descriptor
     {
         private readonly List<Type> diagnosticAnalyzers;
         public const string RuleDescriptionPathPattern = "SonarQube.CodeAnalysis.CSharp.Rules.Description.{0}.html";
+        public const string RuleAssemblyName = "SonarQube.CodeAnalysis.CSharp";
+        public const string RuleAssemblyFileName = RuleAssemblyName + ".dll";
+        public const string RuleExtraAssemblyFileName = RuleAssemblyName + ".Extra.dll";
 
-        public RuleFinder(Assembly assembly)
+        public static IList<Assembly> GetRuleAssemblies()
         {
-            diagnosticAnalyzers = assembly
-                .GetTypes()
+            return new[]
+            {
+                Assembly.LoadFrom(RuleAssemblyFileName),
+                Assembly.LoadFrom(RuleExtraAssemblyFileName)
+            };
+        }
+
+        public RuleFinder()
+        {
+            diagnosticAnalyzers = GetRuleAssemblies()
+                .SelectMany(a => a.GetTypes())
                 .Where(t => t.IsSubclassOf(typeof (DiagnosticAnalyzer)))
                 .Where(t => t.GetCustomAttributes<RuleAttribute>().Any())
                 .ToList();

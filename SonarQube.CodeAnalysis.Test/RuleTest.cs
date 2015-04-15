@@ -14,14 +14,7 @@ namespace SonarQube.CodeAnalysis.Test
     [TestClass]
     public class RuleTest
     {
-        private static IList<Assembly> GetRuleAssemblies()
-        {
-            return new[]
-            {
-                Assembly.LoadFrom("SonarQube.CodeAnalysis.CSharp.dll"),
-                Assembly.LoadFrom("SonarQube.CodeAnalysis.CSharp.Extra.dll")
-            };
-        }
+        
 
         private static IList<Type> GetDiagnosticAnalyzerTypes(IList<Assembly> assemblies)
         {
@@ -34,7 +27,7 @@ namespace SonarQube.CodeAnalysis.Test
         [TestMethod]
         public void RuleHasResourceHtml()
         {
-            var assemblies = GetRuleAssemblies();
+            var assemblies = RuleFinder.GetRuleAssemblies();
             var analyzers = GetDiagnosticAnalyzerTypes(assemblies);
 
             var resources = new Dictionary<Assembly, string[]>();
@@ -74,7 +67,7 @@ namespace SonarQube.CodeAnalysis.Test
         [TestMethod]
         public void DiagnosticAnalyzerHasRuleAttribute()
         {
-            var analyzers = GetDiagnosticAnalyzerTypes(GetRuleAssemblies());
+            var analyzers = GetDiagnosticAnalyzerTypes(RuleFinder.GetRuleAssemblies());
 
             foreach (var analyzer in analyzers)
             {
@@ -89,7 +82,7 @@ namespace SonarQube.CodeAnalysis.Test
         [TestMethod]
         public void VisualStudio_NoRuleTemplates()
         {
-            var analyzers = GetDiagnosticAnalyzerTypes(new[] { Assembly.LoadFrom("SonarQube.CodeAnalysis.CSharp.dll") });
+            var analyzers = GetDiagnosticAnalyzerTypes(new[] { Assembly.LoadFrom(RuleFinder.RuleAssemblyFileName) });
 
             foreach (var analyzer in analyzers)
             {
@@ -105,7 +98,7 @@ namespace SonarQube.CodeAnalysis.Test
         [TestMethod]
         public void VisualStudio_OnlyParameterlessRules()
         {
-            var analyzers = GetDiagnosticAnalyzerTypes(new[] { Assembly.LoadFrom("SonarQube.CodeAnalysis.CSharp.dll") });
+            var analyzers = GetDiagnosticAnalyzerTypes(new[] { Assembly.LoadFrom(RuleFinder.RuleAssemblyFileName) });
 
             foreach (var analyzer in analyzers)
             {
@@ -120,7 +113,7 @@ namespace SonarQube.CodeAnalysis.Test
         [TestMethod]
         public void VisualStudio_AllParameterlessRulesNotRuleTemplate()
         {
-            var analyzers = GetDiagnosticAnalyzerTypes(new[] { Assembly.LoadFrom("SonarQube.CodeAnalysis.CSharp.Extra.dll") });
+            var analyzers = GetDiagnosticAnalyzerTypes(new[] { Assembly.LoadFrom(RuleFinder.RuleExtraAssemblyFileName) });
 
             foreach (var analyzer in analyzers)
             {
