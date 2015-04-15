@@ -15,7 +15,6 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
     [SqaleConstantRemediation("10min")]
     [SqaleSubCharacteristic(SqaleSubCharacteristic.Understandability)]
     [Rule(DiagnosticId, RuleSeverity, Description, IsActivatedByDefault)]
-    [LegacyKey("BreakOutsideSwitch")]
     public class BreakOutsideSwitch : DiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S1227";

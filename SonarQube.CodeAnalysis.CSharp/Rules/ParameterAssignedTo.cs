@@ -14,7 +14,6 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
     [SqaleConstantRemediation("5min")]
     [SqaleSubCharacteristic(SqaleSubCharacteristic.IntegrationTestability)]
     [Rule(DiagnosticId, RuleSeverity, Description, IsActivatedByDefault)]
-    [LegacyKey("ParameterAssignedTo")]
     [Tags("misra", "pitfall")]
     public class ParameterAssignedTo : DiagnosticAnalyzer
     {

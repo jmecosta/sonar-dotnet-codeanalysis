@@ -12,7 +12,6 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
     [SqaleConstantRemediation("1h")]
     [Rule(DiagnosticId, RuleSeverity, Description, IsActivatedByDefault)]
     [SqaleSubCharacteristic(SqaleSubCharacteristic.Readability)]
-    [LegacyKey("FileLoc")]
     [Tags("brain-overload")]
     public class FileLines : DiagnosticAnalyzer
     {

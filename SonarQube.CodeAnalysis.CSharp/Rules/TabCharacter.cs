@@ -12,7 +12,6 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
     [SqaleConstantRemediation("2min")]
     [Rule(DiagnosticId, RuleSeverity, Description, IsActivatedByDefault)]
     [SqaleSubCharacteristic(SqaleSubCharacteristic.Readability)]
-    [LegacyKey("TabCharacter")]
     [Tags("convention")]
     public class TabCharacter : DiagnosticAnalyzer
     {

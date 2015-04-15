@@ -14,7 +14,6 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
     [SqaleConstantRemediation("5min")]
     [SqaleSubCharacteristic(SqaleSubCharacteristic.Readability)]
     [Rule(DiagnosticId, RuleSeverity, Description, IsActivatedByDefault)]
-    [LegacyKey("MagicNumber")]
     [Tags("brain-overload")]
     public class MagicNumber : DiagnosticAnalyzer
     {

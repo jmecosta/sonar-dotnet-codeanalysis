@@ -15,7 +15,6 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
     [SqaleConstantRemediation("5min")]
     [SqaleSubCharacteristic(SqaleSubCharacteristic.Understandability)]
     [Rule(DiagnosticId, RuleSeverity, Description, IsActivatedByDefault)]
-    [LegacyKey("CommentedCode")]
     [Tags("misra", "unused")]
     public class CommentedOutCode : DiagnosticAnalyzer
     {

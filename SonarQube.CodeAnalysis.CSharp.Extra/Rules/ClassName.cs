@@ -14,7 +14,6 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
     [SqaleSubCharacteristic(SqaleSubCharacteristic.Readability)]
     [SqaleConstantRemediation("5min")]
     [Rule(DiagnosticId, RuleSeverity, Description, IsActivatedByDefault)]
-    [LegacyKey("ClassName")]
     [Tags("convention")]
     public class ClassName : DiagnosticAnalyzer
     {

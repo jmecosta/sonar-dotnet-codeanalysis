@@ -102,7 +102,6 @@
     <Compile Include="Rules\UnnecessaryBooleanLiteral.cs" />
     <Compile Include="Rules\UnusedLocalVariable.cs" />
     <Compile Include="Rules\UseCurlyBraces.cs" />
-    <Compile Include="SonarQube.Settings\LegacyKeyAttribute.cs" />
     <Compile Include="SonarQube.Settings\PropertyType.cs" />
     <Compile Include="SonarQube.Settings\RuleAttribute.cs" />
     <Compile Include="SonarQube.Settings\RuleParameterAttribute.cs" />

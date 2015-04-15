@@ -19,7 +19,6 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     [NoSqaleRemediation]
     [Rule(DiagnosticId, RuleSeverity, Description, IsActivatedByDefault, true)]
-    [LegacyKey("CommentRegularExpression")]
     public class CommentRegularExpression : DiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S124";

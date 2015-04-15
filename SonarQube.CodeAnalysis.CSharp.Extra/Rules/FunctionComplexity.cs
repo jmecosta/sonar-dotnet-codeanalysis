@@ -12,7 +12,6 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
     [SqaleConstantRemediation("1h")]
     [SqaleSubCharacteristic(SqaleSubCharacteristic.IntegrationTestability)]
     [Rule(DiagnosticId, RuleSeverity, Description, IsActivatedByDefault)]
-    [LegacyKey("FunctionComplexity")]
     [Tags("brain-overload")]
     public class FunctionComplexity : DiagnosticAnalyzer
     {

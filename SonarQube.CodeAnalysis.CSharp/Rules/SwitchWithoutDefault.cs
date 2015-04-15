@@ -15,7 +15,6 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
     [Rule(DiagnosticId, RuleSeverity, Description, IsActivatedByDefault)]
     [SqaleSubCharacteristic(SqaleSubCharacteristic.LogicReliability)]
     [Tags("cert", "cwe", "misra")]
-    [LegacyKey("SwitchWithoutDefault")]
     public class SwitchWithoutDefault : DiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S131";

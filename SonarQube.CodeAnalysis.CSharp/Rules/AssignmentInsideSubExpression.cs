@@ -16,7 +16,6 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
     [SqaleSubCharacteristic(SqaleSubCharacteristic.Readability)]
     [Rule(DiagnosticId, RuleSeverity, Description, IsActivatedByDefault)]
     [Tags("bug", "cwe", "misra")]
-    [LegacyKey("AssignmentInSubExpressionCheck", "AssignmentInSubExpression", "AssignmentWithinCondition", "AssignmentInsideSubExpression")]
     public class AssignmentInsideSubExpression : DiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S1121";

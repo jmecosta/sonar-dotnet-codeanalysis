@@ -14,7 +14,6 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
     [SqaleConstantRemediation("1h")]
     [Rule(DiagnosticId, RuleSeverity, Description, IsActivatedByDefault)]
     [Tags("cwe", "error-handling", "security")]
-    [LegacyKey("MaskedExceptionCheck")]
     public class EmptyCatch : DiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S2486";
