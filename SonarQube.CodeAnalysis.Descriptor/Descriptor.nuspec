@@ -16,8 +16,8 @@
     </frameworkAssemblies>
   </metadata>
   <files>
-    <file src="*RuleDescriptors.xml"  target="xml\" />
-    <file src="QualityProfile.xml"  target="xml\" />
-    <file src="SqaleDescriptors.xml"  target="xml\" />
+    <file src="rules.xml"  target="xml\" />
+    <file src="profile.xml"  target="xml\" />
+    <file src="sqale.xml"  target="xml\" />
   </files>
 </package>
