@@ -13,7 +13,7 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     [SqaleConstantRemediation("5min")]
-    [SqaleSubCharacteristic(SqaleSubCharacteristic.Readability)]
+    [SqaleSubCharacteristic(SqaleSubCharacteristic.InstructionReliability)]
     [Rule(DiagnosticId, RuleSeverity, Description, IsActivatedByDefault)]
     [Tags("bug", "cwe", "misra")]
     public class AssignmentInsideSubExpression : DiagnosticAnalyzer

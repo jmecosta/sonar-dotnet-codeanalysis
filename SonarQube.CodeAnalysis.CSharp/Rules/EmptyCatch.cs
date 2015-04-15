@@ -18,7 +18,7 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
     {
         internal const string DiagnosticId = "S2486";
         internal const string Description = @"Exceptions should not be ignored";
-        internal const string MessageFormat = @"Handle the exception, rather than swallow it with an empty statement";
+        internal const string MessageFormat = @"Handle the exception, rather than swallow it with an empty statement.";
         internal const string Category = "SonarQube";
         internal const Severity RuleSeverity = Severity.Major; 
         internal const bool IsActivatedByDefault = true;

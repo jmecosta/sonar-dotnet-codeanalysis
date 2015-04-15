@@ -1,6 +1,8 @@
 <p>
-Having two <code>cases</code> in the same <code>switch</code> statement or branches in the same <code>if</code> structure with the same implementation is at best duplicate code, and at worst a coding error. If the same logic is 
-truly needed for both instances, then they should be combined, for an <code>if</code> structure or one should fall through to the other for a switch.
+    Having two <code>cases</code> in the same <code>switch</code> statement or branches in the same <code>if</code> structure
+    with the same implementation is at best duplicate code, and at worst a coding error. If the same logic is truly needed for
+    both instances, then in an <code>if</code> structure they should be combined, or for a <code>switch</code>, one should fall 
+    through to the other.
 </p>
 
 <h2>Noncompliant Code Example</h2>

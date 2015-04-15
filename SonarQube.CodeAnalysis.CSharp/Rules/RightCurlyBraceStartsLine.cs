@@ -11,7 +11,7 @@ using SonarQube.CodeAnalysis.CSharp.SonarQube.Settings.Sqale;
 namespace SonarQube.CodeAnalysis.CSharp.Rules
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    [SqaleSubCharacteristic(SqaleSubCharacteristic.Understandability)]
+    [SqaleSubCharacteristic(SqaleSubCharacteristic.Readability)]
     [SqaleConstantRemediation("1min")]
     [Rule(DiagnosticId, RuleSeverity, Description, IsActivatedByDefault)]
     [Tags("convention")]

@@ -13,7 +13,7 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     [SqaleConstantRemediation("10min")]
-    [SqaleSubCharacteristic(SqaleSubCharacteristic.Understandability)]
+    [SqaleSubCharacteristic(SqaleSubCharacteristic.Readability)]
     [Rule(DiagnosticId, RuleSeverity, Description, IsActivatedByDefault)]
     public class BreakOutsideSwitch : DiagnosticAnalyzer
     {

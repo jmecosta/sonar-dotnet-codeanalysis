@@ -15,6 +15,7 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
     [SqaleSubCharacteristic(SqaleSubCharacteristic.LogicReliability)]
     [SqaleConstantRemediation("10min")]
     [Rule(DiagnosticId, RuleSeverity, Description, IsActivatedByDefault)]
+    [Tags("bug")]
     public class ConditionalStructureSameImplementation : DiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S1871";

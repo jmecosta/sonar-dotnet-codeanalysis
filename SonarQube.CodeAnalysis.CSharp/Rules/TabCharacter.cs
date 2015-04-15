@@ -16,7 +16,7 @@ namespace SonarQube.CodeAnalysis.CSharp.Rules
     public class TabCharacter : DiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S105";
-        internal const string Description = "Tabulation character should not be used";
+        internal const string Description = "Tabulation characters should not be used";
         internal const string MessageFormat = "Replace all tab characters in this file by sequences of white-spaces.";
         internal const string Category = "SonarQube";
         internal const Severity RuleSeverity = Severity.Minor; 
